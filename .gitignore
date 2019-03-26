@@ -1,7 +1,6 @@
 # API files
-views/pages
+views/pages/admin/brand/*.ejs
 routes/temps/*
-routes/admin
 lib/
 assets/
 .vscode/
