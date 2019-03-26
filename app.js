@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/'));
 
 //Requires
-//require('./routes/index')(app);
+require('./routes/index')(app);
 require('./routes/api/brand')(app);
 
 //Angiver en listener på port 4000
