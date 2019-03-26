@@ -1,0 +1,55 @@
+.form-group {
+    overflow-y: auto;
+}
+
+.buttonpanel {
+    float: right;
+}
+
+.icon {
+    margin-right: 5px;
+    color: #000;
+}
+
+.mainwrapper h1 {
+    font-size: 3.0rem;
+    margin: 0 0 5px 0;
+}
+
+.mainwrapper h2 {
+    font-size: 2.0rem;
+    margin: 0px;
+}
+
+.adminpanel {
+    display: flex;
+    flex-direction: row;
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 15px;
+}
+
+#headerspanel {
+    flex: 1 0 0;
+ }
+
+#buttonpanel {
+    text-align: right;
+    flex: 2 0 0;
+ }
+
+ #buttonpanel a {
+     margin-left: 10px;
+ }
+
+ form {
+     margin-top: 15px;
+ }
+
+ .form-group:last-of-type {
+     padding-right: 14px;
+     text-align: right;
+ }
+
+ textarea {
+    min-height: 200px;
+ }

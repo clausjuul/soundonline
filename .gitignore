@@ -2,7 +2,6 @@
 views/pages/admin/brand/*.ejs
 routes/temps/*
 lib/
-assets/
 .vscode/
 
 # Logs

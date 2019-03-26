@@ -18,7 +18,7 @@ module.exports = (app) => {
     });
 
     //Get single item
-    app.get('/api/brands/:id', (req, res) => {
+    app.get('/api/brand/:id', (req, res) => {
         if(isNaN(req.params.id)) {
             res.sendStatus(400);
         } else {
