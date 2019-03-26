@@ -1,10 +1,20 @@
-const mysql = require('../config/mysql');
+const mysql = require('../config/mysql')();
 const bodyParser = require('body-parser');
 
 module.exports = (app) => {
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
+
     //Get all 
     app.get('/api/', function(req, res) {
-        res.sendStatus(200);
+        let sql = "SELECT * FROM brand";
+        mysql.query(sql, (err, rows, fields) => {
+            if(err) {
+                console.error(err);
+            } else {
+                return res.json(rows);
+            }
+        })
     });
 
     //Get single product
