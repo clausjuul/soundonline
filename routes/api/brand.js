@@ -1,4 +1,4 @@
-const mysql = require('../config/mysql')();
+const mysql = require('../../config/mysql')();
 const bodyParser = require('body-parser');
 
 module.exports = (app) => {

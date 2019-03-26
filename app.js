@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/'));
 
 //Requires
 //require('./routes/index')(app);
-require('./routes/brand')(app);
+require('./routes/api/brand')(app);
 
 //Angiver en listener på port 4000
 app.listen(port, () => {
