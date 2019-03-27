@@ -36,7 +36,7 @@ module.exports = (app) => {
     })
     
     //Add new item
-    app.post('/api/brands', (req, res) => {
+    app.post('/api/brand', (req, res) => {
         let title = (req.body.title === undefined) ? '' : req.body.title;
         let description = (req.body.description === undefined) ? '' : req.body.description;
 

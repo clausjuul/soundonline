@@ -7,7 +7,7 @@ const modulename = 'Brands';
 
 module.exports = (app) => {
     //GET: Henter liste med brands
-    app.get('/admin/brand/list', (req, res) => {
+    app.get('/admin/brand/index', (req, res) => {
         res.render('pages/admin/brand/index', {
             modulename: modulename,
             modulemode: 'Oversigt'
@@ -22,4 +22,12 @@ module.exports = (app) => {
             id: req.params.id
         }) 
     })
+
+    //Oprette nyt brand
+    app.get('/admin/brand/create', (req, res) => {
+        res.render('pages/admin/brand/create', {
+            modulename: modulename,
+            modulemode: 'Opret ny'
+        }) 
+    });
 }

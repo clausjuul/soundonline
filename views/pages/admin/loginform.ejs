@@ -1,0 +1,19 @@
+<% include ../../partials/header %>    
+
+<form class="form-signin" action="/auth/signin" method="post">
+  
+  <label for="inputEmail" class="sr-only">Email-adresse</label>
+  <input type="email" id="inputEmail" class="form-control" placeholder="din@email.dk" name="email" autofocus>
+  <label for="inputPassword" class="sr-only">Adgangskode</label>
+  <input type="password" id="inputPassword" class="form-control" placeholder="adgangskode" name="password">
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Husk mig
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Log ind</button>
+  <p class="mt-5 mb-3"><a href="/signup">Opret en ny konto</a></p>
+  <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+</form>
+
+<% include ../../partials/footer %>
