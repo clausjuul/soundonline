@@ -9,7 +9,8 @@
     const id = <%= id %>;
     const url = '/api/brand/' + id;
 
-    //Fetcher data fra API
+    //Fetcher data fra API og giver besked til brugeren om 
+    //hvilket brand man er ved at slette
     fetch(url)
         .then(data => {
             return data.json();
@@ -18,17 +19,16 @@
             document.getElementById('title').innerHTML = data[0].title;
         });
 
-        //Sætter klik event på formens Gem knap.
+        //Sætter klik event på slette knap #delsubmit.
         document.getElementById('delsubmit').onclick = () => {   
-            const del_url = "/api/brand/" + id;
-            const fetchSettings = {
-                method: 'DELETE'
-            }
 
-            fetch(del_url, fetchSettings)
+            fetch(url, {
+                    method: 'DELETE'
+                })
                 .then(data => {
-                    console.log(data);         
-                    document.location.href = '/admin/brand/index';           
+                    if(data.status === 200) {
+                        document.location.href = '/admin/brand/index';
+                    }
                 })
                 .catch(err => {
                     console.error(err);
