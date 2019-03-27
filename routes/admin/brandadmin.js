@@ -23,11 +23,20 @@ module.exports = (app) => {
         }) 
     })
 
-    //Oprette nyt brand
+    //Opret nyt brand
     app.get('/admin/brand/create', (req, res) => {
         res.render('pages/admin/brand/create', {
             modulename: modulename,
             modulemode: 'Opret ny'
         }) 
     });
+
+    //Redigere brand
+    app.get('/admin/brand/update/:id', (req, res) => {
+        res.render('pages/admin/brand/update', {
+            modulename: modulename,
+            modulemode: 'Rediger',
+            id: req.params.id
+        }) 
+    });    
 }
