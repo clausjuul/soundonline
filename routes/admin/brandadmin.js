@@ -39,4 +39,13 @@ module.exports = (app) => {
             id: req.params.id
         }) 
     });    
+
+    //Delete brand
+    app.get('/admin/brand/delete/:id', (req, res) => {
+        res.render('pages/admin/brand/delete', {
+            modulename: modulename,
+            modulemode: 'Slet mærke',
+            id: req.params.id
+        }) 
+    });     
 }

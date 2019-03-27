@@ -85,7 +85,7 @@ module.exports = (app) => {
     })
     
     //Delete item
-    app.delete('/api/brands/:id', (req, res) => {
+    app.delete('/api/brand/:id', (req, res) => {
         if(isNaN(req.params.id)) {
             res.sendStatus(400);
         } else {

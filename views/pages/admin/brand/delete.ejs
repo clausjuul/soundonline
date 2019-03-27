@@ -1,0 +1,39 @@
+<!-- views/pages/index.ejs -->
+<% include ../../../partials/header %>    
+       
+<p>Vil du slette mærket <i id="title"></i> fra databasen?</p>
+<button id="delsubmit" class="btn btn-danger">Slet</button>
+
+<script>
+    //Sætter vars til id og url
+    const id = <%= id %>;
+    const url = '/api/brand/' + id;
+
+    //Fetcher data fra API
+    fetch(url)
+        .then(data => {
+            return data.json();
+        })
+        .then(data => {
+            document.getElementById('title').innerHTML = data[0].title;
+        });
+
+        //Sætter klik event på formens Gem knap.
+        document.getElementById('delsubmit').onclick = () => {   
+            const del_url = "/api/brand/" + id;
+            const fetchSettings = {
+                method: 'DELETE'
+            }
+
+            fetch(del_url, fetchSettings)
+                .then(data => {
+                    console.log(data);         
+                    document.location.href = '/admin/brand/index';           
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+
+        }
+</script>
+<% include ../../../partials/footer %>
