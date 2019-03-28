@@ -4,7 +4,7 @@
 
 <script>
     //Sætter var til url
-    const url = "/api/brand/";
+    const url = "/api/product/";
 
     //Fetcher data fra API
     fetch(url)
@@ -24,11 +24,11 @@
             for(var item of data) {
                 html += `<tr> 
                             <td> 
-                                <a class="icon" href="/admin/brand/update/${item.id}" title="Rediger">
+                                <a class="icon" href="/admin/product/update/${item.id}" title="Rediger">
                                     <i class="fas fa-pencil-alt"></i></a>
-                                <a class="icon" href="/admin/brand/details/${item.id}" title="Se detaljer">
+                                <a class="icon" href="/admin/product/details/${item.id}" title="Se detaljer">
                                     <i class="fas fa-info-circle"></i></a> 
-                                <a class="icon" href="/admin/brand/delete/${item.id}" title="Slet">
+                                <a class="icon" href="/admin/product/delete/${item.id}" title="Slet">
                                     <i class="fas fa-trash-alt"></i></a>
                             </td>
                             <td>${item.title}</td>
@@ -43,7 +43,7 @@
         //Udskriver knap til Opret ny
         let btn = document.createElement('a');
         btn.setAttribute('class', 'btn btn-dark');
-        btn.setAttribute('href', '/admin/brand/create');
+        btn.setAttribute('href', '/admin/product/create');
         btn.innerText = 'Opret ny';
         document.getElementById('buttonpanel').appendChild(btn);
 

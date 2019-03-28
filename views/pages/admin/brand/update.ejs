@@ -55,9 +55,11 @@
         //Fetcher data til api og tjekker resppns. Redirecter til details Hvis ok (200) 
         fetch(url, fetchSettings)
             .then(res => {
-                if(res.status === 200) {
-                    document.location.href = '/admin/brand/details/' + id;
-                }
+                console.log('done')
+                res.redirect('back')
+                // if(res.status === 200) {
+                //     document.location.href = '/admin/brand/details/' + id;
+                // }
             }).catch(err => {
                 console.error(err);
             });

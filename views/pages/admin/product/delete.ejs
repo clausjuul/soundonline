@@ -7,10 +7,10 @@
 <script>
     //Sætter vars til id og url
     const id = <%= id %>;
-    const url = '/api/brand/' + id;
+    const url = '/api/product/' + id;
 
     //Fetcher data fra API og giver besked til brugeren om 
-    //hvilket brand man er ved at slette
+    //hvilket product man er ved at slette
     fetch(url)
         .then(data => {
             return data.json();
@@ -27,7 +27,7 @@
                 })
                 .then(data => {
                     if(data.status === 200) {
-                        document.location.href = '/admin/brand/';
+                        document.location.href = '/admin/product/';
                     }
                 })
                 .catch(err => {

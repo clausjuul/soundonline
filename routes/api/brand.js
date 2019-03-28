@@ -6,7 +6,7 @@ module.exports = (app) => {
     app.use(bodyParser.json());
 
     //Get all 
-    app.get('/api/brands', function(req, res) {
+    app.get('/api/brand/', function(req, res) {
         let sql = "SELECT id, title, description FROM brand";
         mysql.query(sql, (err, rows, fields) => {
             if(err) {
@@ -58,7 +58,7 @@ module.exports = (app) => {
     })
     
     //Update item
-    app.put('/api/brands/:id', (req, res) => {
+    app.put('/api/brand/:id', (req, res) => {
         if(isNaN(req.params.id)) {
             res.sendStatus(400);
         } else {
