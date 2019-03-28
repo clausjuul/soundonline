@@ -6,8 +6,8 @@ module.exports = (app) => {
     app.use(bodyParser.json());
 
     //Get all 
-    app.get('/api/brand/', function(req, res) {
-        let sql = "SELECT id, title, description FROM brand";
+    app.get('/api/productgroup', function(req, res) {
+        let sql = "SELECT * FROM productgroup";
         mysql.query(sql, (err, rows, fields) => {
             if(err) {
                 console.error(err);
@@ -18,12 +18,12 @@ module.exports = (app) => {
     });
 
     //Get single item
-    app.get('/api/brand/:id', (req, res) => {
+    app.get('/api/productgroup/:id', (req, res) => {
         if(isNaN(req.params.id)) {
             res.sendStatus(400);
         } else {
-            const sql = `SELECT title, description  
-                            FROM brand 
+            const sql = `SELECT *  
+                            FROM productgroup 
                             WHERE id = ?`;
             mysql.query(sql, [req.params.id], (err, result) => {
                 if(err) {
@@ -35,48 +35,53 @@ module.exports = (app) => {
         }
     })
     
-    let temp;
     //Add new item
-    app.post('/api/brand', (req, res) => {
+    app.post('/api/productgroup/', (req, res) => {
+        let parent_id = (req.body.parent_id === undefined) ? '' : req.body.parent_id;
         let title = (req.body.title === undefined) ? '' : req.body.title;
         let description = (req.body.description === undefined) ? '' : req.body.description;
+        let sortnumber = (req.body.sortnumber === undefined) ? '' : req.body.sortnumber;
+        let active = (req.body.active === undefined) ? '' : req.body.active;
 
         if(title === '' || description === '') {
             res.sendStatus(418);
         } else {
-            const sql = `INSERT INTO brand(title, description) 
-                            VALUES(?,?)`;
-            mysql.query(sql, [title, description], (err, result) => {
+            const sql = `INSERT INTO productgroup(parent_id, title, description, sortnumber, active) 
+                            VALUES(?,?,?,?,?,?,?,?,?)`;
+            mysql.query(sql, [parent_id, title, description, sortnumber, active], (err, result) => {
                 if(err) {
                     console.error(err);
                 } else {
-                    // res.locals
-                    // temp = result.insertId;
-                    // console.log(temp);
-                    // console.log(result.insertId);
-
+                    console.log(result.insertId);
                     res.sendStatus(200);
                 }
             })
+
         }
     })
     
     //Update item
-    app.put('/api/brand/:id', (req, res) => {
+    app.put('/api/productgroup/:id', (req, res) => {
         if(isNaN(req.params.id)) {
             res.sendStatus(400);
         } else {
+            let parent_id = (req.body.parent_id === undefined) ? '' : req.body.parent_id;
             let title = (req.body.title === undefined) ? '' : req.body.title;
             let description = (req.body.description === undefined) ? '' : req.body.description;
+            let sortnumber = (req.body.sortnumber === undefined) ? '' : req.body.sortnumber;
+            let active = (req.body.active === undefined) ? '' : req.body.active;
     
             if(title === '' || description === '') {
                 res.sendStatus(418);
             } else {
-                const sql = `UPDATE brand SET 
+                const sql = `UPDATE productgroup SET 
+                                parent_id = ?,
                                 title = ?, 
-                                description = ? 
+                                description = ?, 
+                                sortnumber = ?, 
+                                active = ?
                                 WHERE id = ?`;
-                mysql.query(sql, [title, description, req.params.id], (err, result) => {
+                mysql.query(sql, [parent_id, title, description, sortnumber, active, req.params.id], (err, result) => {
                     if(err) {
                         console.error(err);
                     } else {
@@ -89,11 +94,11 @@ module.exports = (app) => {
     })
     
     //Delete item
-    app.delete('/api/brand/:id', (req, res) => {
+    app.delete('/api/productgroup/:id', (req, res) => {
         if(isNaN(req.params.id)) {
             res.sendStatus(400);
         } else {
-            const sql = `DELETE FROM brand WHERE id = ?`;
+            const sql = `DELETE FROM productgroup WHERE id = ?`;
             mysql.query(sql, [req.params.id], (err, result) => {
                 if(err) {
                     console.error(err);

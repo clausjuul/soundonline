@@ -79,7 +79,7 @@ module.exports = (app) => {
             let brand_id = (req.body.brand_id === undefined) ? '' : req.body.brand_id;
             let active = (req.body.active === undefined) ? '' : req.body.active;
     
-            if(title === '' || description === '') {
+            if(title === '' || description_short === '') {
                 res.sendStatus(418);
             } else {
                 const sql = `UPDATE product SET 

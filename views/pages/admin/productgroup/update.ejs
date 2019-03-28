@@ -1,0 +1,100 @@
+<% include ../../../partials/header %>    
+
+<form id="myform">    
+    <fieldset>
+        <div class="form-group" data-group="parent_id">
+            <label class="col-sm-2 control-label required" for="parent_id">Parent id:</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="parent_id" id="parent_id" value="">
+            </div>
+        </div>    
+        <div class="form-group" data-group="title">
+            <label class="col-sm-2 control-label required" for="title">Titel:</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="title" id="title" value="">
+            </div>
+        </div>    
+        <div class="form-group" data-group="description">
+            <label class="col-sm-2 control-label required" for="description">Beskrivelse:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="description" id="description"></textarea>
+            </div>
+        </div>    
+        <div class="form-group" data-group="sortnumber">
+            <label class="col-sm-2 control-label required" for="sortnumber">sort number:</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" name="sortnumber" id="sortnumber"></textarea>
+            </div>
+        </div>    
+        <div class="form-group" data-group="active">
+            <label class="col-sm-2 control-label required" for="active">active:</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="active" id="active" value="">
+            </div>
+        </div>  
+        <div class="form-group">
+            <button type="button" id="formsubmit" class="btn btn-success">update</button>
+        </div>
+    </fieldset>
+</form>
+
+<script>
+    //Sætter var til id og form objekt
+    const id = <%= id %>;
+    const form = document.querySelector('form');
+
+    //Fetcher eksisterende data fra API og placere disse i de respektive felter
+    fetch('/api/productgroup/' + id)
+        .then(data => {
+            return data.json();
+        })
+        .then(data => {
+            form.parent_id.value = data[0].parent_id;
+            form.title.value = data[0].title;
+            form.description.value = data[0].description;
+            form.sortnumber.value = data[0].sortnumber;
+            form.active.value = data[0].active;
+        });
+
+    //Sætter klik event på formens Gem knap.
+    document.getElementById('formsubmit').onclick = () => {
+        //Sætter var til url
+        let url = '/api/productgroup/' + id;
+
+        //Sætter fetch settings med PUT metode, headers og form data
+        let fetchSettings = {
+            method: 'PUT',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                parent_id: form.parent_id.value,
+                title: form.title.value,
+                description: form.description.value,
+                sortnumber: form.sortnumber.value,
+                active: form.active.value,
+            })
+        }
+
+        //Fetcher data til api og tjekker resppns. Redirecter til details Hvis ok (200) 
+        fetch(url, fetchSettings)
+            .then(res => {
+                console.log('done')
+                // res.redirect('back')
+                if(res.status === 200) {
+                    document.location.href = '/admin/productgroup/details/' + id;
+                }
+            }).catch(err => {
+                console.error(err);
+            });
+    }
+
+    //Opretter knap til oversigt 
+    let btn = document.createElement('a');
+    btn.setAttribute('class', 'btn btn-default');
+    btn.setAttribute('href', '/admin/productgroup/');
+    btn.innerHTML = 'Oversigt';
+    document.getElementById('buttonpanel').appendChild(btn);    
+</script>
+
+<% include ../../../partials/footer %>

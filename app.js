@@ -15,10 +15,12 @@ app.use(express.static(__dirname + '/'));
 //Requires
 // require('./routes/index')(app);
 // require('./routes/login')(app);
-require('./routes/api/product')(app);
 require('./routes/api/brand')(app);
-require('./routes/admin/productadmin')(app);
+require('./routes/api/product')(app);
+require('./routes/api/productgroup')(app);
 require('./routes/admin/brandadmin')(app);
+require('./routes/admin/productadmin')(app);
+require('./routes/admin/productgroupadmin')(app);
 
 //Angiver en listener på port 4000
 app.listen(port, () => {

@@ -6,7 +6,7 @@
 <script>
     //Sætter vars til id og url
     const id = <%= id %>;
-    const url = '/api/product/' + id;
+    const url = '/api/productgroup/' + id;
 
     //Fetcher data fra API
     fetch(url)
@@ -18,7 +18,7 @@
             let html = `<table class="table"> 
                             <tr>
                                 <td width="15%"><b>Varenummer</b></td>
-                                <td>${data[0].item_number}</td>
+                                <td>${data[0].parent_id}</td>
                             </tr>
                             <tr>
                                 <td width="15%"><b>Titel</b></td>
@@ -26,7 +26,7 @@
                             </tr>
                             <tr>
                                 <td><b>Beskrivelse</b></td>
-                                <td>${data[0].description_short}</td>
+                                <td>${data[0].description}</td>
                             </tr>
                         </table>`;
             document.getElementById('details').innerHTML = html;
@@ -35,13 +35,13 @@
         //Udskriver knapper til Oversigt og Rediger via Javascripts createElement
         let btnedit = document.createElement('a');
         btnedit.setAttribute('class', 'btn btn-dark');
-        btnedit.setAttribute('href', '/admin/product/update/' + id);
+        btnedit.setAttribute('href', '/admin/productgroup/update/' + id);
         btnedit.innerHTML = 'Rediger';
         document.getElementById('buttonpanel').appendChild(btnedit);
 
         let btnlist = document.createElement('a');
         btnlist.setAttribute('class', 'btn btn-dark');
-        btnlist.setAttribute('href', '/admin/product/');
+        btnlist.setAttribute('href', '/admin/productgroup/');
         btnlist.innerHTML = 'Oversigt';
         document.getElementById('buttonpanel').appendChild(btnlist);
 </script>

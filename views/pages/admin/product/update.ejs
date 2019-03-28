@@ -57,7 +57,7 @@
             </div>
         </div>  
         <div class="form-group">
-            <button type="button" id="formsubmit" class="btn btn-success">Gem</button>
+            <button type="button" id="formsubmit" class="btn btn-success">update</button>
         </div>
     </fieldset>
 </form>
@@ -112,10 +112,10 @@
         fetch(url, fetchSettings)
             .then(res => {
                 console.log('done')
-                res.redirect('back')
-                // if(res.status === 200) {
-                //     document.location.href = '/admin/product/details/' + id;
-                // }
+                // res.redirect('back')
+                if(res.status === 200) {
+                    document.location.href = '/admin/product/details/' + id;
+                }
             }).catch(err => {
                 console.error(err);
             });
@@ -124,7 +124,7 @@
     //Opretter knap til oversigt 
     let btn = document.createElement('a');
     btn.setAttribute('class', 'btn btn-default');
-    btn.setAttribute('href', '/admin/product/list');
+    btn.setAttribute('href', '/admin/product/');
     btn.innerHTML = 'Oversigt';
     document.getElementById('buttonpanel').appendChild(btn);    
 </script>
